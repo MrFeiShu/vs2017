@@ -1,0 +1,10 @@
+﻿  main.cpp
+e:\code\vs2017\hano\hano\hano\main.cpp(32): warning C4326: return type of 'main' should be 'int' instead of 'void'
+e:\code\vs2017\hano\hano\hano\main.cpp(42): warning C4244: '=': conversion from 'time_t' to 'double', possible loss of data
+e:\code\vs2017\hano\hano\hano\main.cpp(46): warning C4244: '=': conversion from 'time_t' to 'double', possible loss of data
+e:\code\vs2017\hano\hano\hano\main.cpp(47): warning C4244: 'argument': conversion from 'double' to 'const time_t', possible loss of data
+e:\code\vs2017\hano\hano\hano\main.cpp(48): warning C4477: 'printf' : format string '%ld' requires an argument of type 'long', but variadic argument 3 has type '__int64'
+  e:\code\vs2017\hano\hano\hano\main.cpp(48): note: consider using '%lld' in the format string
+  e:\code\vs2017\hano\hano\hano\main.cpp(48): note: consider using '%I64d' in the format string
+e:\code\vs2017\hano\hano\hano\main.cpp(48): warning C4477: 'printf' : format string '%ld' requires an argument of type 'long', but variadic argument 4 has type 'double'
+  hano.vcxproj -> E:\code\vs2017\hano\hano\Debug\hano.exe
