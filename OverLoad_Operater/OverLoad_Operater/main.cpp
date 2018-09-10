@@ -23,10 +23,19 @@ public:
 
 		return rect;
 	}
+	
+	CRectangle operator-(const CRectangle& rect1)
+	{
+		CRectangle rect;
+		rect.m_s4Width = this->m_s4Width - rect1.m_s4Width;
+		rect.m_s4Height = this->m_s4Height - rect1.m_s4Height;
+
+		return rect;
+	}
 
 	void Show()
 	{
-		cout << this->m_s4Width << "---" << this->m_s4Height << endl;
+		cout << this->m_s4Width << "***" << this->m_s4Height << endl;
 	}
 
 	void SetValue(int s4Width, int s4Height)
@@ -51,5 +60,9 @@ void main()
 
 	rect3 = rect1 + rect2;
 	rect3.Show();
+
+	rect3 = rect1 - rect2;
+	rect3.Show();
+
 	cout << "hello world" << endl;
 }
