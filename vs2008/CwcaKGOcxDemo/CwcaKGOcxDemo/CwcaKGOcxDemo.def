@@ -1,0 +1,9 @@
+; CwcaKGOcxDemo.def : Declares the module parameters.
+
+LIBRARY      "CwcaKGOcxDemo.OCX"
+
+EXPORTS
+	DllCanUnloadNow     PRIVATE
+	DllGetClassObject   PRIVATE
+	DllRegisterServer   PRIVATE
+	DllUnregisterServer PRIVATE

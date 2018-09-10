@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<TITLE>ATL 8.0 test page for object Calc</TITLE>
+</HEAD>
+<BODY>
+
+<OBJECT ID="Calc" CLASSID="CLSID:73E2495F-C26E-43D0-9440-7D6291C07B0D"></OBJECT>
+
+<input type="button" value="Add" onclick="add();" />
+
+<script type="text/javascript">
+    function add() {
+        var calc = document.getElementById('Calc');
+        try
+		{
+			var result = calc.Add(3, 2.7);
+			alert(result);
+		}
+		catch(err)
+		{
+			alert(err.message);
+		}
+    }
+</script>
+
+</BODY>
+</HTML>

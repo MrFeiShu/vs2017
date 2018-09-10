@@ -1,0 +1,34 @@
+HKCR
+{
+	Calc.Calculator.1 = s 'Calculator Class'
+	{
+		CLSID = s '{73E2495F-C26E-43D0-9440-7D6291C07B0D}'
+	}
+	Calc.Calculator = s 'Calculator Class'
+	{
+		CLSID = s '{73E2495F-C26E-43D0-9440-7D6291C07B0D}'
+		CurVer = s 'Calc.Calculator.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {73E2495F-C26E-43D0-9440-7D6291C07B0D} = s 'Calculator Class'
+		{
+			ProgID = s 'Calc.Calculator.1'
+			VersionIndependentProgID = s 'Calc.Calculator'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			ForceRemove 'Control'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 102'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '%OLEMISC%'
+			}
+			'TypeLib' = s '{BE3A7AD0-924C-48A9-AF5A-FF0B39FC29A6}'
+			'Version' = s '1.0'
+		}
+	}
+}

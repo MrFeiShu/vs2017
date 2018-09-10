@@ -1,0 +1,54 @@
+// CwcaKGOcxDemo.idl : type library source for ActiveX Control project.
+
+// This file will be processed by the MIDL compiler tool to
+// produce the type library (CwcaKGOcxDemo.tlb) that will become a resource in
+// CwcaKGOcxDemo.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(96D09F07-CEF9-4697-85B6-1A8EA6AD6D42), version(1.0),
+  helpfile("CwcaKGOcxDemo.hlp"),
+  helpstring("CwcaKGOcxDemo ActiveX Control module"),
+  control ]
+library CwcaKGOcxDemoLib
+{
+	importlib(STDOLE_TLB);
+
+	//  Primary dispatch interface for CCwcaKGOcxDemoCtrl
+	//	C51D75A9-1C71-4FB6-AE15-059B6C7AFA62
+	[ uuid(18A1842A-7961-4677-829D-3E15F4699E91),
+	  helpstring("Dispatch interface for CwcaKGOcxDemo Control")]
+	dispinterface _DCwcaKGOcxDemo
+	{
+		properties:
+		methods:
+			[id(1), helpstring("method GenerateCertRequest")] BSTR GenerateCertRequest(BSTR DN, BSTR Alg, BSTR keySpec, LONG keyLen);
+			[id(2), helpstring("method ImportSignCert")] LONG ImportSignCert(BSTR p7b);
+			[id(3), helpstring("method GenerateTempPubKey")] BSTR GenerateTempPubKey(BSTR Alg, LONG keyLen);
+			[id(4), helpstring("method ImportCryptoCertAndKey")] LONG ImportCryptoCertAndKey(BSTR p7bCert, LONG keySpec, BSTR encSessionKey, BSTR flg, BSTR encPriKey);
+	};
+
+	//  Event dispatch interface for CCwcaKGOcxDemoCtrl
+
+	[ uuid(D5455F22-60A4-441F-9704-47241198F7C7),
+	  helpstring("Event interface for CwcaKGOcxDemo Control") ]
+	dispinterface _DCwcaKGOcxDemoEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+	};
+
+	//  Class information for CCwcaKGOcxDemoCtrl
+
+	[ uuid(BB19C61F-5D34-4e6d-9A2B-5A93D6613097),
+	  helpstring("CwcaKGOcxDemo Control"), control ]
+	coclass CwcaKGOcxDemo
+	{
+		[default] dispinterface _DCwcaKGOcxDemo;
+		[default, source] dispinterface _DCwcaKGOcxDemoEvents;
+	};
+
+};

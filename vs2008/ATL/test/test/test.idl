@@ -1,0 +1,50 @@
+// test.idl : IDL source for test
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (test.tlb) and marshalling code.
+
+#include "olectl.h"
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(B10260B4-B1D8-4413-9873-BD041E4194B8),
+	dual,
+	nonextensible,
+	helpstring("IMod Interface"),
+	pointer_default(unique)
+]
+interface IMod : IDispatch{
+	[id(1), helpstring("method assert")] HRESULT assert([in] BSTR a, [out,retval] BSTR* ret);
+};
+
+[
+	uuid(9349C7E6-9F77-4891-BEE4-DBF6855242DD),
+	version(1.0),
+	helpstring("test 1.0 Type Library")
+]
+library testLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(A4E48825-2A16-49CA-9C5E-FF6BBF11C241),
+		helpstring("_IModEvents Interface")
+	]
+	dispinterface _IModEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		uuid(39BF130B-73E3-49B5-B363-DE304DB557D1),
+		control,
+		helpstring("Mod Class")
+	]
+	coclass Mod
+	{
+		[default] interface IMod;
+		[default, source] dispinterface _IModEvents;
+	};
+};

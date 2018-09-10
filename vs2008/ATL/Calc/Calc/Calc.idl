@@ -1,0 +1,50 @@
+// Calc.idl : IDL source for Calc
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Calc.tlb) and marshalling code.
+
+#include "olectl.h"
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(EE7D46C8-3138-4008-9D61-D39A3B8AADA4),
+	dual,
+	nonextensible,
+	helpstring("ICalculator Interface"),
+	pointer_default(unique)
+]
+interface ICalculator : IDispatch{
+	[id(1), helpstring("method Add")] HRESULT Add([in] DOUBLE a, [in] DOUBLE b, [out,retval] DOUBLE* result);
+};
+
+[
+	uuid(BE3A7AD0-924C-48A9-AF5A-FF0B39FC29A6),
+	version(1.0),
+	helpstring("Calc 1.0 Type Library")
+]
+library CalcLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(D86E8CB5-EEA7-4E9B-9CCA-DF0AB20DCCB1),
+		helpstring("_ICalculatorEvents Interface")
+	]
+	dispinterface _ICalculatorEvents
+	{
+		properties:
+		methods:
+	};
+	[
+		uuid(73E2495F-C26E-43D0-9440-7D6291C07B0D),
+		control,
+		helpstring("Calculator Class")
+	]
+	coclass Calculator
+	{
+		[default] interface ICalculator;
+		[default, source] dispinterface _ICalculatorEvents;
+	};
+};
