@@ -69,59 +69,29 @@ bool DeleteNode(int u4SlotId)
 	int			u4Count;
 	BlkDevNode*	pblkDevNode = g_pblkDevHead;
 
-	u4Count = GetNodeCount();
-	// 先判断节点个数
-	if (0 == u4Count) // 如果为0，则直接返回？ TODO
+	BlkDevNode* pblkBefore = NULL; // 保存上一个节点的指针。
+	while (NULL != pblkDevNode && u4SlotId != pblkDevNode->m_blkDevData.m_u4SlotId) // 此处不能判断pNext，因为如果判断pNext，就会略过最后一个节点。
+	{
+		pblkBefore = pblkDevNode;
+		pblkDevNode = pblkDevNode->pNext;
+	}
+
+	if (NULL != pblkDevNode)
+	{
+		// 如果是头结点，那么将第二个节点赋给头结点，并释放头结点的内存
+		if (g_pblkDevHead == pblkDevNode)
+		{
+			g_pblkDevHead = pblkDevNode->pNext;
+		}
+		else// 中间节点和尾节点的处理一致。
+		{
+			pblkBefore->pNext = pblkDevNode->pNext;
+		}
+		delete pblkDevNode;
+	}
+	else
 	{
 		return false;
-	}
-	// 如果节点个数为1，那么就必须将g_blkDevNodeHead赋NULL
-	else if (1 == u4Count)
-	{
-		if ( g_pblkDevHead == pblkDevNode )
-		{
-			delete g_pblkDevHead;
-			g_pblkDevHead = NULL;
-		} 
-		else
-		{
-			return false;
-		}
-	}
-	else // 如果是多个，则需要逐个比对查找
-	{
-		BlkDevNode* pblkBefore = NULL; // 保存上一个节点的指针。
-		while (NULL != pblkDevNode && u4SlotId != pblkDevNode->m_blkDevData.m_u4SlotId) // 此处不能判断pNext，因为如果判断pNext，就会略过最后一个节点。
-		{
-			pblkBefore = pblkDevNode;
-			pblkDevNode = pblkDevNode->pNext;
-		}
-
-		if (NULL != pblkDevNode)
-		{
-			// 如果是头结点，那么将第二个节点赋给头结点，并释放头结点的内存
-			if ( g_pblkDevHead == pblkDevNode )
-			{
-				g_pblkDevHead = pblkDevNode->pNext;
-				delete pblkDevNode;
-			}
-			else if ( NULL != pblkDevNode->pNext ) // 如果pNext指针不为空，则说明是中间节点；那么需要将删除节点的下一个节点指针赋给上一个节点的pNext，然后释放内存即可。
-			{
-				// BlkDevNode* pblkTemp = pblkDevNode;
-				pblkBefore->pNext = pblkDevNode->pNext;
-				delete pblkDevNode;
-			}
-			else // 如果上述都不是，则是尾部节点；则需要将上一节点的pNext置为NULL，然后释放内存。
-			{
-				// BlkDevNode* pblkTemp = pblkDevNode;
-				pblkBefore->pNext = NULL;
-				delete pblkDevNode;
-			}
-		}
-		else
-		{
-			return false;
-		}
 	}
 	
 	return true;
