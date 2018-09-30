@@ -6,7 +6,11 @@
 typedef struct BLKDEVDATATAG
 {
 	int		m_u4SlotId;
-	char	m_pszLabel[MAX_LABEL_LEN];
+	wchar_t	m_pszLabel[MAX_LABEL_LEN];
+	wchar_t	m_pszApp[32];
+	wchar_t	m_pszCnt[64];
+	wchar_t	m_pszCert[64];
+	wchar_t	m_pszType[10];
 }BlkDevData;
 
 typedef struct BLKDEVNODETAG
@@ -16,7 +20,7 @@ typedef struct BLKDEVNODETAG
 }BlkDevNode;
 
 bool InitDevLink();
-BlkDevNode* AddDevNode(int u4SlotId, char* pszDevName);
+BlkDevNode* AddDevNode(BlkDevData* pblkDevData);
 BlkDevNode* FindDevNode(int u4SlotId);
 bool DeleteNode(int u4SlotId);
 int GetNodeCount();

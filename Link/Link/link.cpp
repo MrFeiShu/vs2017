@@ -12,21 +12,18 @@ bool InitDevLink()
 }
 
 // 内部申请内存，返回节点地址
-BlkDevNode* AddDevNode(int u4SlotId, char* pszDevLabel)
+BlkDevNode* AddDevNode(BlkDevData* pblkDevData)
 {
 	BlkDevNode*	pblkDev = new BlkDevNode;
 	int			u4Count;
 
-	if ( 0 == u4SlotId || NULL == pszDevLabel )
-	{
-		return NULL;
-	}
-	pblkDev->m_blkDevData.m_u4SlotId = u4SlotId;
-	strcpy_s(pblkDev->m_blkDevData.m_pszLabel, MAX_LABEL_LEN, pszDevLabel);
+// 	pblkDev->m_blkDevData.m_u4SlotId = u4SlotId;
+// 	strcpy_s(pblkDev->m_blkDevData.m_pszLabel, MAX_LABEL_LEN, pszDevLabel);
+	memcpy(&pblkDev->m_blkDevData, pblkDevData, sizeof(BlkDevData));
 
 	// 查找尾部节点
 	u4Count = GetNodeCount();
-	if ( 0 == u4Count )
+	if (0 == u4Count)
 	{
 		g_pblkDevHead = pblkDev;
 		g_pblkDevHead->pNext = NULL;
@@ -55,7 +52,7 @@ BlkDevNode* FindDevNode(int u4SlotId)
 	BlkDevNode* pblkPos = NULL;
 
 	pblkPos = g_pblkDevHead;
-	while ( NULL != pblkPos && u4SlotId != pblkPos->m_blkDevData.m_u4SlotId )
+	while (NULL != pblkPos && u4SlotId != pblkPos->m_blkDevData.m_u4SlotId)
 	{
 		pblkPos = pblkPos->pNext;
 	}
@@ -66,7 +63,6 @@ BlkDevNode* FindDevNode(int u4SlotId)
 // 删除节点，并释放内存
 bool DeleteNode(int u4SlotId)
 {
-	int			u4Count;
 	BlkDevNode*	pblkDevNode = g_pblkDevHead;
 
 	BlkDevNode* pblkBefore = NULL; // 保存上一个节点的指针。
@@ -93,7 +89,7 @@ bool DeleteNode(int u4SlotId)
 	{
 		return false;
 	}
-	
+
 	return true;
 }
 
